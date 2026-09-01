@@ -1,0 +1,682 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@theme {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Montserrat", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-stone-50: var(--stone-50);
+  --color-stone-100: var(--stone-100);
+  --color-stone-200: var(--stone-200);
+  --color-stone-300: var(--stone-300);
+  --color-stone-400: var(--stone-400);
+  --color-stone-500: var(--stone-500);
+  --color-stone-600: var(--stone-600);
+  --color-stone-700: var(--stone-700);
+  --color-stone-800: var(--stone-800);
+  --color-stone-900: var(--stone-900);
+  --color-stone-950: var(--stone-950);
+  --color-gold-low: var(--gold-low);
+  --color-gold-high: var(--gold-high);
+  --color-canvas: var(--canvas);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Porcelane premium — neutros quentes, alta legibilidade */
+  --stone-50: #FCFBFA;
+  --stone-100: #F2F0ED;   /* superfícies / seções */
+  --stone-200: #E8E6E3;   /* linhas */
+  --stone-300: #D6D2CC;
+  --stone-400: #707070;   /* texto secundário */
+  --stone-500: #5A5A5A;
+  --stone-600: #3D3D3D;
+  --stone-700: #2E2E2E;
+  --stone-800: #262626;
+  --stone-900: #202020;
+  --stone-950: #202020;   /* texto principal */
+
+  --gold-low: #A97C4E;
+  --gold-high: #8B5E34;
+
+  --canvas: #F7F5F2;
+  --background: var(--canvas);
+  --foreground: #202020;
+
+  --card: #FFFFFF;
+  --card-foreground: #202020;
+  --popover: #FFFFFF;
+  --popover-foreground: #202020;
+
+  --primary: #202020;
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--stone-100);
+  --secondary-foreground: #202020;
+  --muted: var(--stone-100);
+  --muted-foreground: var(--stone-400);
+  --accent: #8B5E34;
+  --accent-foreground: #FFFFFF;
+  --destructive: #B85450;
+  --destructive-foreground: #FFFFFF;
+
+  --border: var(--stone-200);
+  --input: var(--stone-200);
+  --ring: #8B5E34;
+
+  --shadow-card: 0 1px 2px rgba(32,32,32,0.04), 0 1px 3px rgba(32,32,32,0.03);
+  --shadow-raised: 0 4px 16px -6px rgba(32,32,32,0.14);
+}
+
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: oklch(0.78 0.13 85 / 0.25);
+  }
+}
+
+@utility label-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-stone-400);
+}
+
+/* Cartões premium (Linear / Stripe / Notion) */
+@utility card-premium {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+@utility card-pad {
+  padding: 1.25rem 1.5rem;
+}
+
+@utility section-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-stone-600);
+}
+
+@utility table-premium {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+  & thead th {
+    text-align: left;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-stone-400);
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+  & tbody td {
+    padding: 0.75rem 0.875rem;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+  }
+  & tbody tr:hover td { background: var(--color-stone-50); }
+}
+
+
+@utility input-line {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-stone-200);
+  padding: 0.25rem 0;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+@utility input-line {
+  &:focus { border-color: var(--color-gold-high); }
+}
+
+/* ============================================================
+   Camada visual dos Kanbans (identidade Porcelane)
+   Apenas aparência — nenhuma regra funcional é alterada.
+   ============================================================ */
+@utility kanban-col {
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-stone-50);
+  padding: 0.875rem;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+/* Fluxo técnico / medição — variação suave do dourado oficial */
+@utility kanban-col-tecnica {
+  background: color-mix(in oklab, var(--color-gold-low) 5%, #ffffff);
+  border-color: color-mix(in oklab, var(--color-gold-low) 22%, var(--color-border));
+}
+
+/* Produção — variação neutra quente da mesma identidade */
+@utility kanban-col-producao {
+  background: color-mix(in oklab, var(--color-stone-300) 22%, #ffffff);
+  border-color: var(--color-border);
+}
+
+@utility kanban-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-stone-600);
+}
+
+@utility kanban-count {
+  border-radius: 999px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  padding: 0.1rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-stone-500);
+}
+
+@utility kanban-card {
+  border-radius: 12px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  padding: 0.75rem 0.875rem;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-gold-low) 35%, var(--color-border));
+    box-shadow: var(--shadow-raised);
+  }
+}
+
+@utility kanban-order {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-stone-950);
+}
+
+@utility kanban-meta {
+  font-size: 0.6875rem;
+  color: var(--color-stone-400);
+}
+
+@utility kanban-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  padding: 0.075rem 0.45rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-stone-500);
+  background: var(--color-stone-50);
+  white-space: nowrap;
+}
+
+@utility kanban-badge-neutro {
+  background: var(--color-stone-100);
+  border-color: var(--color-border);
+  color: var(--color-stone-500);
+}
+@utility kanban-badge-andamento {
+  background: color-mix(in oklab, var(--color-gold-low) 10%, #ffffff);
+  border-color: color-mix(in oklab, var(--color-gold-low) 35%, transparent);
+  color: var(--color-gold-high);
+}
+@utility kanban-badge-alerta {
+  background: color-mix(in oklab, var(--destructive) 8%, #ffffff);
+  border-color: color-mix(in oklab, var(--destructive) 32%, transparent);
+  color: var(--destructive);
+}
+@utility kanban-badge-positivo {
+  background: color-mix(in oklab, #3F6F52 8%, #ffffff);
+  border-color: color-mix(in oklab, #3F6F52 30%, transparent);
+  color: #3F6F52;
+}
+@utility kanban-badge-atencao {
+  background: color-mix(in oklab, #B8860B 10%, #ffffff);
+  border-color: color-mix(in oklab, #B8860B 32%, transparent);
+  color: #8A6508;
+}
+
+
+@utility kanban-btn {
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  padding: 0.3rem 0.7rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--color-card);
+  color: var(--color-stone-700);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  &:hover {
+    background: var(--color-stone-950);
+    border-color: var(--color-stone-950);
+    color: #ffffff;
+  }
+}
+
+@utility kanban-btn-solid {
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--color-stone-950);
+  color: #ffffff;
+  transition: background 0.15s;
+  &:hover { background: var(--color-stone-700); }
+}
+
+
+/* A4 print layout — margens 8mm em todos os lados; cabeçalho fixo a 8mm do topo */
+@media print {
+  /* margin:0 no @page remove a barra do navegador (data/título) no PDF;
+     a margem da folha passa a ser o padding do body. */
+  @page { size: A4; margin: 0; }
+  @page landscape { size: A4 landscape; margin: 0; }
+
+
+  body { background: white; padding: 10mm 12mm; }
+  .no-print { display: none !important; }
+  /* PDFs separados: imprime somente o bloco escolhido do relatório. */
+  [data-print-scope="vendas"] [data-print-block]:not([data-print-block="vendas"]) { display: none !important; }
+  [data-print-scope="interno"] [data-print-block]:not([data-print-block="interno"]) { display: none !important; }
+  [data-print-scope="externo"] [data-print-block]:not([data-print-block="externo"]) { display: none !important; }
+  [data-print-scope="arquiteto"] [data-print-block]:not([data-print-block="arquiteto"]) { display: none !important; }
+  /* O deslocamento da sidebar não pode empurrar/cortar o documento na impressão */
+  main { margin-left: 0 !important; margin-right: 0 !important; }
+  .ui-zoom-root { zoom: 1 !important; }
+  .print-page { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+
+  /* Páginas que devem imprimir em paisagem (2D / 3D / ordem de corte). */
+  .print-landscape { page: landscape; }
+
+  /* Relatórios em PDF leve preto e branco */
+  .report-bw, .report-bw * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .report-bw { font-size: 10.5pt; }
+  .report-bw table { border-collapse: collapse !important; width: 100% !important; max-width: 100% !important; table-layout: fixed !important; }
+  .report-bw th, .report-bw td { border: 0.5pt solid #000 !important; padding: 3pt 4pt !important; overflow-wrap: anywhere; word-break: break-word; }
+  .report-bw thead th { border-bottom: 1pt solid #000 !important; font-weight: 700; }
+  .report-bw h1, .report-bw h2, .report-bw h3 { font-weight: 700; }
+  .report-bw hr, .report-bw .border, .report-bw [class*="border-"] { border-color: #000 !important; }
+  .report-bw thead { display: table-header-group; }
+  .report-bw tr { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Relatório diário: enquadrado exatamente na área útil do A4 retrato
+     (210mm - 2 x 12mm de margem = 186mm). */
+  .report-a4 {
+    width: 186mm !important;
+    max-width: 186mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    font-size: 8.5pt !important;
+  }
+  .report-a4 * { max-width: 100% !important; }
+  .report-a4 table { font-size: 8pt !important; }
+  .report-a4 th, .report-a4 td { padding: 2pt 3pt !important; line-height: 1.2 !important; }
+  .report-a4 h1 { font-size: 15pt !important; }
+  .report-a4 h2, .report-a4 h3 { font-size: 10pt !important; }
+  .report-a4 .grid { gap: 4pt !important; }
+
+  /* Nada pode ultrapassar a largura útil da folha em nenhum PDF do sistema */
+  html, body { width: auto !important; overflow: visible !important; }
+  #root, main, main > * { width: auto !important; max-width: 100% !important; overflow: visible !important; }
+  [class*="max-w-"] { max-width: 100% !important; }
+  .container, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl { width: 100% !important; max-width: 100% !important; margin: 0 !important; }
+  .overflow-x-auto, .overflow-auto, .overflow-hidden, .overflow-y-auto { overflow: visible !important; }
+  table { max-width: 100% !important; }
+  img, svg, canvas, video { max-width: 100% !important; height: auto; }
+  * { box-shadow: none !important; }
+}
+
+
+
+/* ============================================================
+   Camada visual única dos documentos PDF (A4 retrato)
+   Apenas estilos — nenhuma estrutura ou dado é alterado.
+   ============================================================ */
+:root {
+  --pdf-ink: #14110F;
+  --pdf-graphite: #4A4A4A;
+  --pdf-soft: #7A7A7A;
+  --pdf-line: #D9D6D2;
+  --pdf-hairline: #ECEAE7;
+  --pdf-gold: #8B5E34;
+}
+
+.a4-page {
+  counter-increment: pdfpage;
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  margin: 0 auto 10mm;
+  padding: 10mm 14mm 20mm;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  color: var(--pdf-ink);
+  font-family: var(--font-sans);
+  font-size: 10.8pt;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.a4-page table { font-size: inherit; }
+.a4-page h1, .a4-page h2, .a4-page h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+.a4-page hr { border-color: var(--pdf-line); }
+
+/* Rodapé institucional idêntico em todas as páginas */
+.a4-page::after {
+  content: "WhatsApp (81) 99597-5549   ·   Instagram @porcelaneoficial   ·   Página " counter(pdfpage);
+  position: absolute;
+  left: 16mm;
+  right: 16mm;
+  bottom: 9mm;
+  padding-top: 2.5mm;
+  border-top: 0.4pt solid var(--pdf-line);
+  font-family: var(--font-sans);
+  font-size: 7.6pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pdf-soft);
+  display: flex;
+  justify-content: space-between;
+  white-space: pre-wrap;
+}
+.a4-page.pdf-no-footer::after { content: none; }
+
+/* Ficha interna do pedido: conteúdo sempre contido em uma folha A4 */
+.ficha-a4 {
+  height: 297mm;
+  min-height: 297mm;
+  overflow: hidden;
+  padding: 12mm 14mm 18mm;
+}
+@media print {
+  /* A4 retrato (297mm) menos as margens de impressão (12mm + 12mm) */
+  .ficha-a4 {
+    width: 100% !important;
+    height: 273mm !important;
+    min-height: 0 !important;
+    max-height: 273mm !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    break-after: avoid;
+    page-break-after: avoid;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .ficha-a4 * { overflow: hidden !important; }
+}
+
+/* Documentos: tabelas técnicas leves e econômicas de tinta */
+.a4-page table th {
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pdf-graphite);
+}
+.a4-page table td, .a4-page table th { word-break: break-word; }
+.a4-page thead { display: table-header-group; }
+.a4-page tr, .a4-page img, .a4-page svg { break-inside: avoid; page-break-inside: avoid; }
+
+@utility pdf-title {
+  font-family: var(--font-display);
+  font-size: 16pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--pdf-ink);
+}
+
+@utility pdf-eyebrow {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pdf-soft);
+}
+
+@utility pdf-divider {
+  height: 0;
+  border-top: 0.5pt solid var(--pdf-line);
+  margin: 4mm 0;
+}
+
+@utility pdf-rule-gold {
+  height: 2px;
+  background: var(--pdf-gold);
+  width: 34px;
+  border-radius: 2px;
+}
+
+@utility pdf-card {
+  border: 0.5pt solid var(--pdf-line);
+  border-radius: 3px;
+  padding: 3.5mm 4mm;
+  background: #fff;
+  break-inside: avoid;
+}
+
+@utility pdf-section {
+  margin-bottom: 6mm;
+  break-inside: avoid;
+}
+
+@utility pdf-table {
+  width: 100%;
+  border-collapse: collapse;
+  & thead th {
+    text-align: left;
+    padding: 2mm 2.5mm;
+    border-bottom: 0.9pt solid var(--pdf-ink);
+  }
+  & tbody td {
+    padding: 2.2mm 2.5mm;
+    border-bottom: 0.4pt solid var(--pdf-hairline);
+    vertical-align: top;
+  }
+}
+
+@utility pdf-signature {
+  border-top: 0.6pt solid var(--pdf-ink);
+  padding-top: 2mm;
+  font-size: 8.5pt;
+  color: var(--pdf-graphite);
+  text-align: center;
+}
+
+@utility pdf-checkbox {
+  display: inline-block;
+  width: 4.5mm;
+  height: 4.5mm;
+  border: 0.7pt solid var(--pdf-ink);
+  border-radius: 1px;
+  vertical-align: middle;
+}
+
+@media print {
+  .a4-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 0 14mm !important;
+    width: auto;
+    min-height: 0;
+    font-size: 10.2pt;
+    line-height: 1.4;
+  }
+  .a4-page::after { left: 0; right: 0; bottom: 0; }
+
+  /* Nada cortado: conteúdo sempre dentro da área imprimível */
+  .a4-page, .a4-page * { overflow: visible !important; }
+  .a4-page table { width: 100% !important; max-width: 100%; }
+  .a4-page td, .a4-page th { overflow-wrap: anywhere; }
+  .a4-page img, .a4-page svg { max-width: 100% !important; height: auto !important; max-height: 28mm !important; }
+  .a4-page header img, .a4-page > header img { max-height: 24mm !important; object-fit: contain !important; }
+
+  /* Quebras de página coerentes */
+  .a4-page thead { display: table-header-group; }
+  .a4-page tfoot { display: table-footer-group; break-inside: avoid; }
+  .a4-page tr { break-inside: avoid; page-break-inside: avoid; }
+  .a4-page h1, .a4-page h2, .a4-page h3, .a4-page h4 { break-after: avoid; page-break-after: avoid; }
+  .a4-page > header { break-inside: avoid; }
+  .a4-page section > table { break-inside: auto; }
+
+  /* Blocos finais não ficam órfãos nem estouram a folha */
+  .a4-page .pdf-sign-block { margin-top: 5mm !important; break-inside: avoid; }
+  .a4-page .pdf-doc-bottom { margin-top: 5mm !important; break-inside: auto; }
+  .a4-page .mt-16 { margin-top: 12mm !important; }
+  .a4-page .mt-12 { margin-top: 9mm !important; }
+  .a4-page .mt-10 { margin-top: 8mm !important; }
+}
+
+
+/* Harmonização automática de documentos já existentes (somente visual) */
+.a4-page > header {
+  border-bottom: 1px solid var(--pdf-ink) !important;
+  padding-bottom: 3mm;
+  margin-bottom: 5mm;
+}
+.a4-page > header .text-gold-low,
+.a4-page > header [class*="tracking-widest"] {
+  color: var(--pdf-soft) !important;
+  letter-spacing: 0.18em;
+  font-size: 7.5pt;
+}
+.a4-page table th,
+.a4-page table td {
+  border-color: var(--pdf-hairline) !important;
+}
+.a4-page table thead th {
+  border-bottom: 0.9pt solid var(--pdf-ink) !important;
+  background: transparent !important;
+}
+.a4-page .bg-stone-950,
+.a4-page .bg-black { background: #14110F !important; }
+
+/* Guia de Cuidados — sempre uma única página A4 na impressão */
+.a4-page.pdf-guia-page {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 297mm;
+}
+.a4-page.pdf-guia-page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media print {
+  .a4-page.pdf-guia-page {
+    break-before: page;
+    page-break-before: always;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 0 !important;
+    width: 100%;
+    height: 273mm;   /* A4 (297mm) menos margens de 12mm */
+    max-height: 273mm;
+  }
+  .a4-page.pdf-guia-page img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 273mm;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+}
+
+/* Zoom global da interface (Central do Pedido / acessibilidade) */
+.ui-zoom-root {
+  zoom: var(--ui-zoom, 1);
+}
+@media print {
+  .ui-zoom-root { zoom: 1; }
+}
+
+/* Visualizador de documentos técnicos: o zoom é apenas de tela.
+   Na impressão o conteúdo volta ao tamanho real (1:1). */
+@media print {
+  .doc-viewer-surface {
+    overflow: visible !important;
+    background: white !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+  .doc-viewer-content {
+    transform: none !important;
+    width: auto !important;
+  }
+}

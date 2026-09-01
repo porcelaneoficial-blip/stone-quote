@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://nlegxuincqoxhszbrwir.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "porcelane-mcp",
+      "version": "0.1.0",
+      "title": "Porcelane MCP"
+    },
+    "tools": [
+      {
+        "name": "app_info",
+        "title": "Informações do app",
+        "description": "Retorna informações básicas sobre o sistema Porcelane (nome, versão, módulos disponíveis).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "echo",
+        "title": "Echo",
+        "description": "Ecoa o texto de entrada. Útil para verificar conectividade com o servidor MCP.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Texto a ser ecoado."
+            }
+          },
+          "required": [
+            "text"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
