@@ -434,7 +434,7 @@
 
 /* Rodapé institucional idêntico em todas as páginas */
 .a4-page::after {
-  content: "WhatsApp (81) 99597-5549   ·   Instagram @porcelaneoficial   ·   Página " counter(pdfpage);
+  content: "WhatsApp (81) 99597-5549   ·   Instagram @porcelaneoficial   ·   Documento confidencial · uso exclusivo do destinatário   ·   Página " counter(pdfpage);
   position: absolute;
   left: 16mm;
   right: 16mm;
