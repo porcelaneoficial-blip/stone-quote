@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Plus, Search, GripVertical, Clock, User as UserIcon } from "lucide-react";
 import { emptyQuoteData, type QuoteData, type Environment } from "@/lib/types";
 import { fmtDateTime } from "@/lib/format";
+import { HomeOverview } from "@/components/home-overview";
 
 export const Route = createFileRoute("/_authenticated/")({
   component: Dashboard,
