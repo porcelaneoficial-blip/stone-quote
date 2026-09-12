@@ -194,6 +194,7 @@ function Dashboard() {
 
   return (
     <div className="max-w-[1600px] mx-auto px-6 py-8">
+      <HomeOverview />
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
           <p className="label-eyebrow">Porcelane Leyalt</p>
