@@ -78,13 +78,43 @@ export function PedraChat({
   );
 
   const { messages, sendMessage, status, error, addToolApprovalResponse, stop } = useChat({
-    id: "pedra-assistente",
+    id: threadId ?? "pedra-assistente",
+    messages: initialMessages,
     transport,
   });
 
   useEffect(() => {
     if (status === "ready") textareaRef.current?.focus();
-  }, [status]);
+  }, [status, threadId]);
+
+  // Guarda o histórico no banco do Petra (uma conversa por usuário).
+  useEffect(() => {
+    if (!threadId || status !== "ready" || messages.length === 0) return;
+    let cancelado = false;
+    (async () => {
+      for (const m of messages) {
+        const id = String((m as any).id ?? "");
+        if (!id || salvasRef.current.has(id)) continue;
+        salvasRef.current.add(id);
+        if (cancelado) return;
+        try {
+          await salvarMensagem(threadId, m as UIMessage);
+          if (m.role === "user" && onTitulo && messages.indexOf(m) === 0) {
+            onTitulo(tituloDaMensagem(m as UIMessage));
+          }
+        } catch {
+          salvasRef.current.delete(id);
+        }
+      }
+    })();
+    return () => {
+      cancelado = true;
+    };
+  }, [messages, status, threadId, onTitulo]);
+
+  useEffect(() => {
+    salvasRef.current = new Set((initialMessages ?? []).map((m) => String((m as any).id ?? "")));
+  }, [threadId]);
 
   const carregando = status === "submitted" || status === "streaming";
 
