@@ -135,7 +135,7 @@ export function PedraChat({
               description="Pergunte sobre orçamentos, pedidos, medições, produção ou financeiro. Ações que gravam dados sempre pedem sua confirmação."
             >
               <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {SUGESTOES.map((s) => (
+                {sugestoes.map((s) => (
                   <button
                     key={s}
                     type="button"
