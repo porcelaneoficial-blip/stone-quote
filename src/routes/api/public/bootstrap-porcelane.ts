@@ -6,7 +6,8 @@ import { createFileRoute } from "@tanstack/react-router";
 // Protegida por token: ?key=porcelane-2026
 
 const SHARED_CONTACT = "porcelaneoficial@gmail.com";
-const ADMINS: { username: string; name: string }[] = [
+const ADMINS: { username: string; name: string; email?: string }[] = [
+  { username: "porcelane", name: "Administração Porcelane", email: SHARED_CONTACT },
   { username: "amanda", name: "Amanda Ferraz" },
   { username: "roxane", name: "Roxane" },
   { username: "clovis", name: "Clóvis Neto" },
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/api/public/bootstrap-porcelane")({
         if (listErr) return new Response("list error: " + listErr.message, { status: 500 });
 
         for (const a of ADMINS) {
-          const email = `${a.username}@porcelane.local`;
+          const email = (a.email ?? `${a.username}@porcelane.local`).toLowerCase();
           let u = list.users.find((x) => (x.email ?? "").toLowerCase() === email);
           if (!u) {
             const { data: created, error: cErr } = await supabaseAdmin.auth.admin.createUser({
