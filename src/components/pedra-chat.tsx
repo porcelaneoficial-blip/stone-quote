@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
+import { DefaultChatTransport, type UIMessage } from "ai";
+import { salvarMensagem, tituloDaMensagem } from "@/lib/pedra-threads";
 import { supabase } from "@/integrations/supabase/client";
 import { useAccessGate } from "@/lib/access-gate";
 import { Button } from "@/components/ui/button";
