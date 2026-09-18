@@ -22,6 +22,7 @@ import {
   Megaphone,
   Palette,
   MessagesSquare,
+  Package,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { GlobalSearch } from "./global-search";
