@@ -23,6 +23,7 @@ import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authentic
 import { Route as AuthenticatedMarketingRouteImport } from './routes/_authenticated/marketing'
 import { Route as AuthenticatedMedicoesRouteImport } from './routes/_authenticated/medicoes'
 import { Route as AuthenticatedMinhaContaRouteImport } from './routes/_authenticated/minha-conta'
+import { Route as AuthenticatedPedraRouteImport } from './routes/_authenticated/pedra'
 import { Route as AuthenticatedRhRouteImport } from './routes/_authenticated/rh'
 import { Route as AuthenticatedRomaneiosRouteImport } from './routes/_authenticated/romaneios'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
@@ -126,6 +127,11 @@ const AuthenticatedMedicoesRoute = AuthenticatedMedicoesRouteImport.update({
 const AuthenticatedMinhaContaRoute = AuthenticatedMinhaContaRouteImport.update({
   id: '/minha-conta',
   path: '/minha-conta',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPedraRoute = AuthenticatedPedraRouteImport.update({
+  id: '/pedra',
+  path: '/pedra',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedRhRoute = AuthenticatedRhRouteImport.update({
@@ -320,6 +326,7 @@ export interface FileRoutesByFullPath {
   '/marketing': typeof AuthenticatedMarketingRoute
   '/medicoes': typeof AuthenticatedMedicoesRoute
   '/minha-conta': typeof AuthenticatedMinhaContaRoute
+  '/pedra': typeof AuthenticatedPedraRoute
   '/rh': typeof AuthenticatedRhRoute
   '/romaneios': typeof AuthenticatedRomaneiosRoute
   '/api/chat': typeof ApiChatRoute
@@ -364,6 +371,7 @@ export interface FileRoutesByTo {
   '/marketing': typeof AuthenticatedMarketingRoute
   '/medicoes': typeof AuthenticatedMedicoesRoute
   '/minha-conta': typeof AuthenticatedMinhaContaRoute
+  '/pedra': typeof AuthenticatedPedraRoute
   '/rh': typeof AuthenticatedRhRoute
   '/romaneios': typeof AuthenticatedRomaneiosRoute
   '/api/chat': typeof ApiChatRoute
@@ -412,6 +420,7 @@ export interface FileRoutesById {
   '/_authenticated/marketing': typeof AuthenticatedMarketingRoute
   '/_authenticated/medicoes': typeof AuthenticatedMedicoesRoute
   '/_authenticated/minha-conta': typeof AuthenticatedMinhaContaRoute
+  '/_authenticated/pedra': typeof AuthenticatedPedraRoute
   '/_authenticated/rh': typeof AuthenticatedRhRoute
   '/_authenticated/romaneios': typeof AuthenticatedRomaneiosRoute
   '/api/chat': typeof ApiChatRoute
@@ -461,6 +470,7 @@ export interface FileRouteTypes {
     | '/marketing'
     | '/medicoes'
     | '/minha-conta'
+    | '/pedra'
     | '/rh'
     | '/romaneios'
     | '/api/chat'
@@ -505,6 +515,7 @@ export interface FileRouteTypes {
     | '/marketing'
     | '/medicoes'
     | '/minha-conta'
+    | '/pedra'
     | '/rh'
     | '/romaneios'
     | '/api/chat'
@@ -552,6 +563,7 @@ export interface FileRouteTypes {
     | '/_authenticated/marketing'
     | '/_authenticated/medicoes'
     | '/_authenticated/minha-conta'
+    | '/_authenticated/pedra'
     | '/_authenticated/rh'
     | '/_authenticated/romaneios'
     | '/api/chat'
@@ -702,6 +714,13 @@ declare module '@tanstack/react-router' {
       path: '/minha-conta'
       fullPath: '/minha-conta'
       preLoaderRoute: typeof AuthenticatedMinhaContaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/pedra': {
+      id: '/_authenticated/pedra'
+      path: '/pedra'
+      fullPath: '/pedra'
+      preLoaderRoute: typeof AuthenticatedPedraRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/rh': {
@@ -985,6 +1004,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedMarketingRoute: typeof AuthenticatedMarketingRoute
   AuthenticatedMedicoesRoute: typeof AuthenticatedMedicoesRoute
   AuthenticatedMinhaContaRoute: typeof AuthenticatedMinhaContaRoute
+  AuthenticatedPedraRoute: typeof AuthenticatedPedraRoute
   AuthenticatedRhRoute: typeof AuthenticatedRhRoute
   AuthenticatedRomaneiosRoute: typeof AuthenticatedRomaneiosRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
@@ -1007,6 +1027,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedMarketingRoute: AuthenticatedMarketingRoute,
   AuthenticatedMedicoesRoute: AuthenticatedMedicoesRoute,
   AuthenticatedMinhaContaRoute: AuthenticatedMinhaContaRoute,
+  AuthenticatedPedraRoute: AuthenticatedPedraRoute,
   AuthenticatedRhRoute: AuthenticatedRhRoute,
   AuthenticatedRomaneiosRoute: AuthenticatedRomaneiosRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
