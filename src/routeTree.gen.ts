@@ -47,6 +47,7 @@ import { Route as AuthenticatedOrcamentosIdRouteImport } from './routes/_authent
 import { Route as AuthenticatedOrcamentosImportarRouteImport } from './routes/_authenticated/orcamentos.importar'
 import { Route as AuthenticatedPedidosIndexRouteImport } from './routes/_authenticated/pedidos.index'
 import { Route as AuthenticatedPedidosIdRouteImport } from './routes/_authenticated/pedidos.$id'
+import { Route as AuthenticatedPedraIndexRouteImport } from './routes/_authenticated/pedra.index'
 import { Route as AuthenticatedPedraThreadIdRouteImport } from './routes/_authenticated/pedra.$threadId'
 import { Route as AuthenticatedProducaoIndexRouteImport } from './routes/_authenticated/producao.index'
 import { Route as AuthenticatedRelatoriosDiarioRouteImport } from './routes/_authenticated/relatorios.diario'
@@ -265,6 +266,11 @@ const AuthenticatedPedidosIdRoute = AuthenticatedPedidosIdRouteImport.update({
   path: '/pedidos/$id',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPedraIndexRoute = AuthenticatedPedraIndexRouteImport.update({
+  id: '/pedra/',
+  path: '/pedra/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPedraThreadIdRoute =
   AuthenticatedPedraThreadIdRouteImport.update({
     id: '/pedra/$threadId',
@@ -356,6 +362,7 @@ export interface FileRoutesByFullPath {
   '/financeiro/': typeof AuthenticatedFinanceiroIndexRoute
   '/orcamentos/': typeof AuthenticatedOrcamentosIndexRoute
   '/pedidos/': typeof AuthenticatedPedidosIndexRoute
+  '/pedra/': typeof AuthenticatedPedraIndexRoute
   '/producao/': typeof AuthenticatedProducaoIndexRoute
   '/producao/relatorio/$employeeId': typeof AuthenticatedProducaoRelatorioEmployeeIdRoute
   '/api/public/hooks/daily-backup': typeof ApiPublicHooksDailyBackupRoute
@@ -402,6 +409,7 @@ export interface FileRoutesByTo {
   '/financeiro': typeof AuthenticatedFinanceiroIndexRoute
   '/orcamentos': typeof AuthenticatedOrcamentosIndexRoute
   '/pedidos': typeof AuthenticatedPedidosIndexRoute
+  '/pedra': typeof AuthenticatedPedraIndexRoute
   '/producao': typeof AuthenticatedProducaoIndexRoute
   '/producao/relatorio/$employeeId': typeof AuthenticatedProducaoRelatorioEmployeeIdRoute
   '/api/public/hooks/daily-backup': typeof ApiPublicHooksDailyBackupRoute
@@ -451,6 +459,7 @@ export interface FileRoutesById {
   '/_authenticated/financeiro/': typeof AuthenticatedFinanceiroIndexRoute
   '/_authenticated/orcamentos/': typeof AuthenticatedOrcamentosIndexRoute
   '/_authenticated/pedidos/': typeof AuthenticatedPedidosIndexRoute
+  '/_authenticated/pedra/': typeof AuthenticatedPedraIndexRoute
   '/_authenticated/producao/': typeof AuthenticatedProducaoIndexRoute
   '/_authenticated/producao/relatorio/$employeeId': typeof AuthenticatedProducaoRelatorioEmployeeIdRoute
   '/api/public/hooks/daily-backup': typeof ApiPublicHooksDailyBackupRoute
@@ -500,6 +509,7 @@ export interface FileRouteTypes {
     | '/financeiro/'
     | '/orcamentos/'
     | '/pedidos/'
+    | '/pedra/'
     | '/producao/'
     | '/producao/relatorio/$employeeId'
     | '/api/public/hooks/daily-backup'
@@ -546,6 +556,7 @@ export interface FileRouteTypes {
     | '/financeiro'
     | '/orcamentos'
     | '/pedidos'
+    | '/pedra'
     | '/producao'
     | '/producao/relatorio/$employeeId'
     | '/api/public/hooks/daily-backup'
@@ -594,6 +605,7 @@ export interface FileRouteTypes {
     | '/_authenticated/financeiro/'
     | '/_authenticated/orcamentos/'
     | '/_authenticated/pedidos/'
+    | '/_authenticated/pedra/'
     | '/_authenticated/producao/'
     | '/_authenticated/producao/relatorio/$employeeId'
     | '/api/public/hooks/daily-backup'
@@ -885,6 +897,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPedidosIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/pedra/': {
+      id: '/_authenticated/pedra/'
+      path: '/pedra'
+      fullPath: '/pedra/'
+      preLoaderRoute: typeof AuthenticatedPedraIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/pedra/$threadId': {
       id: '/_authenticated/pedra/$threadId'
       path: '/pedra/$threadId'
@@ -1016,6 +1035,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedRelatoriosVendasRoute: typeof AuthenticatedRelatoriosVendasRoute
   AuthenticatedOrcamentosIndexRoute: typeof AuthenticatedOrcamentosIndexRoute
   AuthenticatedPedidosIndexRoute: typeof AuthenticatedPedidosIndexRoute
+  AuthenticatedPedraIndexRoute: typeof AuthenticatedPedraIndexRoute
   AuthenticatedProducaoIndexRoute: typeof AuthenticatedProducaoIndexRoute
   AuthenticatedProducaoRelatorioEmployeeIdRoute: typeof AuthenticatedProducaoRelatorioEmployeeIdRoute
 }
@@ -1039,6 +1059,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedRelatoriosVendasRoute: AuthenticatedRelatoriosVendasRoute,
   AuthenticatedOrcamentosIndexRoute: AuthenticatedOrcamentosIndexRoute,
   AuthenticatedPedidosIndexRoute: AuthenticatedPedidosIndexRoute,
+  AuthenticatedPedraIndexRoute: AuthenticatedPedraIndexRoute,
   AuthenticatedProducaoIndexRoute: AuthenticatedProducaoIndexRoute,
   AuthenticatedProducaoRelatorioEmployeeIdRoute:
     AuthenticatedProducaoRelatorioEmployeeIdRoute,
