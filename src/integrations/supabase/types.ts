@@ -1091,8 +1091,14 @@ export type Database = {
           client_name: string | null
           created_at: string
           id: string
+          measured_m2: number | null
+          measured_total: number | null
+          measurer_name: string | null
           notes: string | null
           order_id: string | null
+          phone: string | null
+          price_m2: number | null
+          realized_at: string | null
           scheduled_at: string
           status: string
           updated_at: string
@@ -1103,8 +1109,14 @@ export type Database = {
           client_name?: string | null
           created_at?: string
           id?: string
+          measured_m2?: number | null
+          measured_total?: number | null
+          measurer_name?: string | null
           notes?: string | null
           order_id?: string | null
+          phone?: string | null
+          price_m2?: number | null
+          realized_at?: string | null
           scheduled_at: string
           status?: string
           updated_at?: string
@@ -1115,8 +1127,14 @@ export type Database = {
           client_name?: string | null
           created_at?: string
           id?: string
+          measured_m2?: number | null
+          measured_total?: number | null
+          measurer_name?: string | null
           notes?: string | null
           order_id?: string | null
+          phone?: string | null
+          price_m2?: number | null
+          realized_at?: string | null
           scheduled_at?: string
           status?: string
           updated_at?: string
