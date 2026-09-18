@@ -104,7 +104,8 @@ export function AccessGateProvider({ children }: { children: ReactNode }) {
         if (error) throw error;
         if (!cancelled) window.location.reload();
       } catch (e) {
-        console.error("[access-gate] falha ao restaurar sessão do backend", e);
+        // Não bloquear a interface: segue em modo de acesso liberado.
+        console.warn("[access-gate] sessão do backend indisponível", e);
       }
     })();
     return () => { cancelled = true; };

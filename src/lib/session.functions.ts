@@ -27,7 +27,8 @@ export const mintWorkspaceSession = createServerFn({ method: "POST" }).handler(a
       .limit(1);
     ownerId = (admins?.[0] as any)?.target_user_id ?? null;
   }
-  if (!ownerId) throw new Error("Nenhuma conta administradora encontrada.");
+  // Banco ainda sem nenhuma conta: não é erro, apenas não há sessão a emitir.
+  if (!ownerId) return { token_hash: null, email: null, reason: "sem_conta" as const };
 
   const { data: profile } = await supabaseAdmin
     .from("profiles")
@@ -35,16 +36,16 @@ export const mintWorkspaceSession = createServerFn({ method: "POST" }).handler(a
     .eq("id", ownerId)
     .maybeSingle();
   const email = (profile as any)?.email as string | undefined;
-  if (!email) throw new Error("Conta administradora sem e-mail cadastrado.");
+  if (!email) return { token_hash: null, email: null, reason: "sem_email" as const };
 
   const { data, error } = await supabaseAdmin.auth.admin.generateLink({
     type: "magiclink",
     email,
   });
-  if (error) throw new Error(error.message);
+  if (error) return { token_hash: null, email, reason: "falha_link" as const };
 
   const tokenHash = (data as any)?.properties?.hashed_token as string | undefined;
-  if (!tokenHash) throw new Error("Não foi possível emitir a sessão.");
+  if (!tokenHash) return { token_hash: null, email, reason: "sem_token" as const };
 
-  return { token_hash: tokenHash, email };
+  return { token_hash: tokenHash, email, reason: null };
 });
