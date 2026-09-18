@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
+import { DefaultChatTransport, type UIMessage } from "ai";
+import { salvarMensagem, tituloDaMensagem } from "@/lib/pedra-threads";
 import { supabase } from "@/integrations/supabase/client";
 import { useAccessGate } from "@/lib/access-gate";
 import { Button } from "@/components/ui/button";
@@ -36,12 +37,21 @@ const SUGESTOES = [
 export function PedraChat({
   contexto,
   compact = false,
+  threadId,
+  initialMessages,
+  sugestoes = SUGESTOES,
+  onTitulo,
 }: {
   contexto?: string;
   compact?: boolean;
+  threadId?: string;
+  initialMessages?: UIMessage[];
+  sugestoes?: string[];
+  onTitulo?: (titulo: string) => void;
 }) {
   const { session } = useAccessGate();
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const salvasRef = useRef<Set<string>>(new Set());
 
   const transport = useMemo(
     () =>
@@ -69,13 +79,43 @@ export function PedraChat({
   );
 
   const { messages, sendMessage, status, error, addToolApprovalResponse, stop } = useChat({
-    id: "pedra-assistente",
+    id: threadId ?? "pedra-assistente",
+    messages: initialMessages,
     transport,
   });
 
   useEffect(() => {
     if (status === "ready") textareaRef.current?.focus();
-  }, [status]);
+  }, [status, threadId]);
+
+  // Guarda o histórico no banco do Petra (uma conversa por usuário).
+  useEffect(() => {
+    if (!threadId || status !== "ready" || messages.length === 0) return;
+    let cancelado = false;
+    (async () => {
+      for (const m of messages) {
+        const id = String((m as any).id ?? "");
+        if (!id || salvasRef.current.has(id)) continue;
+        salvasRef.current.add(id);
+        if (cancelado) return;
+        try {
+          await salvarMensagem(threadId, m as UIMessage);
+          if (m.role === "user" && onTitulo && messages.indexOf(m) === 0) {
+            onTitulo(tituloDaMensagem(m as UIMessage));
+          }
+        } catch {
+          salvasRef.current.delete(id);
+        }
+      }
+    })();
+    return () => {
+      cancelado = true;
+    };
+  }, [messages, status, threadId, onTitulo]);
+
+  useEffect(() => {
+    salvasRef.current = new Set((initialMessages ?? []).map((m) => String((m as any).id ?? "")));
+  }, [threadId]);
 
   const carregando = status === "submitted" || status === "streaming";
 
@@ -95,7 +135,7 @@ export function PedraChat({
               description="Pergunte sobre orçamentos, pedidos, medições, produção ou financeiro. Ações que gravam dados sempre pedem sua confirmação."
             >
               <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {SUGESTOES.map((s) => (
+                {sugestoes.map((s) => (
                   <button
                     key={s}
                     type="button"
