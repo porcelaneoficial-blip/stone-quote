@@ -36,12 +36,21 @@ const SUGESTOES = [
 export function PedraChat({
   contexto,
   compact = false,
+  threadId,
+  initialMessages,
+  sugestoes = SUGESTOES,
+  onTitulo,
 }: {
   contexto?: string;
   compact?: boolean;
+  threadId?: string;
+  initialMessages?: UIMessage[];
+  sugestoes?: string[];
+  onTitulo?: (titulo: string) => void;
 }) {
   const { session } = useAccessGate();
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const salvasRef = useRef<Set<string>>(new Set());
 
   const transport = useMemo(
     () =>
