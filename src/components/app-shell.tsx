@@ -22,6 +22,7 @@ import {
   Megaphone,
   Palette,
   MessagesSquare,
+  Package,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { GlobalSearch } from "./global-search";
@@ -63,38 +64,29 @@ const navGroups: NavGroup[] = [
     items: [
       { to: "/producao", label: "Produção", icon: Boxes, show: (p) => p.can("pedidos") },
       { to: "/romaneios", label: "Romaneios", icon: Truck, show: (p) => p.can("pedidos") },
+      { to: "/estoque", label: "Estoque", icon: Package, show: (p) => p.can("pedidos") },
     ],
   },
   {
-    label: "Financeiro",
+    label: "Gestão",
     items: [
       { to: "/financeiro", label: "Financeiro", icon: Wallet, show: (p) => p.can("financeiro") },
       { to: "/financeiro/insights", label: "Insights Financeiros", icon: Wallet, show: (p) => p.can("financeiro") && p.isAdmin },
-    ],
-  },
-  {
-    label: "RH",
-    items: [
       { to: "/rh", label: "RH / Colaboradores / Folha", icon: UserCog, show: (p) => p.can("rh") },
-    ],
-  },
-  {
-    label: "Marketing",
-    items: [
       { to: "/marketing", label: "Marketing", icon: Megaphone, show: (p) => p.can("marketing") },
     ],
   },
   {
     label: "Configurações",
     items: [
+      { to: "/configuracoes", label: "Configurações", icon: Settings, show: (p) => p.can("configuracoes") },
       { to: "/configuracoes/usuarios", label: "Usuários", icon: UserCog, show: (p) => p.can("usuarios") },
       { to: "/configuracoes/emails-autorizados", label: "E-mails autorizados (Google)", icon: UserCog, show: (p) => p.can("usuarios") },
+      { to: "/configuracoes/trello", label: "Integrações", icon: Boxes, show: (p) => p.isAdmin },
       { to: "/configuracoes/biblioteca-3d", label: "Biblioteca", icon: Boxes, show: (p) => p.can("configuracoes") },
-      { to: "/configuracoes/aparencia", label: "Aparência", icon: Palette, show: (p) => p.can("configuracoes") },
       { to: "/configuracoes/backups", label: "Backups", icon: Boxes, show: (p) => p.isAdmin },
-      { to: "/configuracoes/trello", label: "Integração Trello", icon: Boxes, show: (p) => p.isAdmin },
+      { to: "/configuracoes/aparencia", label: "Aparência", icon: Palette, show: (p) => p.can("configuracoes") },
       { to: "/minha-conta", label: "Minha conta", icon: UserIcon },
-      { to: "/configuracoes", label: "Configurações", icon: Settings, show: (p) => p.can("configuracoes") },
     ],
   },
 

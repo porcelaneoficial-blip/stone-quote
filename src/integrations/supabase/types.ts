@@ -1051,6 +1051,7 @@ export type Database = {
           name: string
           porosity: string | null
           price_m2: number
+          stock_quantity: number
           texture_url: string | null
           updated_at: string
           user_id: string
@@ -1065,6 +1066,7 @@ export type Database = {
           name: string
           porosity?: string | null
           price_m2?: number
+          stock_quantity?: number
           texture_url?: string | null
           updated_at?: string
           user_id: string
@@ -1079,6 +1081,7 @@ export type Database = {
           name?: string
           porosity?: string | null
           price_m2?: number
+          stock_quantity?: number
           texture_url?: string | null
           updated_at?: string
           user_id?: string
@@ -2067,6 +2070,7 @@ export type Database = {
           id: string
           name: string
           price: number
+          stock_quantity: number
           unit: string
           updated_at: string
           user_id: string
@@ -2077,6 +2081,7 @@ export type Database = {
           id?: string
           name: string
           price?: number
+          stock_quantity?: number
           unit?: string
           updated_at?: string
           user_id: string
@@ -2087,6 +2092,7 @@ export type Database = {
           id?: string
           name?: string
           price?: number
+          stock_quantity?: number
           unit?: string
           updated_at?: string
           user_id?: string
