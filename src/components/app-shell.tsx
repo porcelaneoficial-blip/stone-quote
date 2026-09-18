@@ -23,6 +23,7 @@ import {
   Palette,
   MessagesSquare,
   Package,
+  BarChart3,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { GlobalSearch } from "./global-search";
@@ -63,6 +64,7 @@ const navGroups: NavGroup[] = [
     label: "Produção",
     items: [
       { to: "/producao", label: "Produção", icon: Boxes, show: (p) => p.can("pedidos") },
+      { to: "/producao/relatorios", label: "Relatório de Produtividade", icon: BarChart3, show: (p) => p.can("relatorios") },
       { to: "/romaneios", label: "Romaneios", icon: Truck, show: (p) => p.can("pedidos") },
       { to: "/estoque", label: "Estoque", icon: Package, show: (p) => p.can("pedidos") },
     ],
