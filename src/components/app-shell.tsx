@@ -21,10 +21,12 @@ import {
   Truck,
   Megaphone,
   Palette,
+  MessagesSquare,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { GlobalSearch } from "./global-search";
 import { ZoomControls } from "./zoom-controls";
+import { PedraFab } from "./pedra-fab";
 
 type NavItem = {
   to: string;
@@ -42,6 +44,7 @@ const navGroups: NavGroup[] = [
   {
     label: "Início",
     items: [
+      { to: "/pedra", label: "Pedra Assistente", icon: MessagesSquare },
       { to: "/", label: "Dashboard", icon: LayoutDashboard },
       { to: "/relatorios/diario", label: "Relatório Diário de Produção", icon: CalendarDays, show: (p) => p.can("relatorios") },
     ],
@@ -236,6 +239,7 @@ export function AppShell() {
           <RouteGuard />
         </div>
       </main>
+      <PedraFab />
     </div>
   );
 }
