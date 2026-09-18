@@ -1526,6 +1526,71 @@ export type Database = {
           },
         ]
       }
+      pedra_messages: {
+        Row: {
+          client_message_id: string | null
+          created_at: string
+          id: string
+          message: Json
+          role: string
+          thread_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          client_message_id?: string | null
+          created_at?: string
+          id?: string
+          message: Json
+          role: string
+          thread_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          client_message_id?: string | null
+          created_at?: string
+          id?: string
+          message?: Json
+          role?: string
+          thread_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pedra_messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "pedra_threads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pedra_threads: {
+        Row: {
+          created_at: string
+          id: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       productivity_config: {
         Row: {
           created_at: string

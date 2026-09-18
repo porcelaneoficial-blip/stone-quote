@@ -23,8 +23,10 @@ import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authentic
 import { Route as AuthenticatedMarketingRouteImport } from './routes/_authenticated/marketing'
 import { Route as AuthenticatedMedicoesRouteImport } from './routes/_authenticated/medicoes'
 import { Route as AuthenticatedMinhaContaRouteImport } from './routes/_authenticated/minha-conta'
+import { Route as AuthenticatedPedraRouteImport } from './routes/_authenticated/pedra'
 import { Route as AuthenticatedRhRouteImport } from './routes/_authenticated/rh'
 import { Route as AuthenticatedRomaneiosRouteImport } from './routes/_authenticated/romaneios'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiGenerateObjectRouteImport } from './routes/api/generate-object'
 import { Route as ApiGenerateTextureRouteImport } from './routes/api/generate-texture'
 import { Route as ApiZapiEnviarPdfRouteImport } from './routes/api/zapi-enviar-pdf'
@@ -127,6 +129,11 @@ const AuthenticatedMinhaContaRoute = AuthenticatedMinhaContaRouteImport.update({
   path: '/minha-conta',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPedraRoute = AuthenticatedPedraRouteImport.update({
+  id: '/pedra',
+  path: '/pedra',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedRhRoute = AuthenticatedRhRouteImport.update({
   id: '/rh',
   path: '/rh',
@@ -136,6 +143,11 @@ const AuthenticatedRomaneiosRoute = AuthenticatedRomaneiosRouteImport.update({
   id: '/romaneios',
   path: '/romaneios',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ApiGenerateObjectRoute = ApiGenerateObjectRouteImport.update({
   id: '/api/generate-object',
@@ -314,8 +326,10 @@ export interface FileRoutesByFullPath {
   '/marketing': typeof AuthenticatedMarketingRoute
   '/medicoes': typeof AuthenticatedMedicoesRoute
   '/minha-conta': typeof AuthenticatedMinhaContaRoute
+  '/pedra': typeof AuthenticatedPedraRoute
   '/rh': typeof AuthenticatedRhRoute
   '/romaneios': typeof AuthenticatedRomaneiosRoute
+  '/api/chat': typeof ApiChatRoute
   '/api/generate-object': typeof ApiGenerateObjectRoute
   '/api/generate-texture': typeof ApiGenerateTextureRoute
   '/api/zapi-enviar-pdf': typeof ApiZapiEnviarPdfRoute
@@ -357,8 +371,10 @@ export interface FileRoutesByTo {
   '/marketing': typeof AuthenticatedMarketingRoute
   '/medicoes': typeof AuthenticatedMedicoesRoute
   '/minha-conta': typeof AuthenticatedMinhaContaRoute
+  '/pedra': typeof AuthenticatedPedraRoute
   '/rh': typeof AuthenticatedRhRoute
   '/romaneios': typeof AuthenticatedRomaneiosRoute
+  '/api/chat': typeof ApiChatRoute
   '/api/generate-object': typeof ApiGenerateObjectRoute
   '/api/generate-texture': typeof ApiGenerateTextureRoute
   '/api/zapi-enviar-pdf': typeof ApiZapiEnviarPdfRoute
@@ -404,8 +420,10 @@ export interface FileRoutesById {
   '/_authenticated/marketing': typeof AuthenticatedMarketingRoute
   '/_authenticated/medicoes': typeof AuthenticatedMedicoesRoute
   '/_authenticated/minha-conta': typeof AuthenticatedMinhaContaRoute
+  '/_authenticated/pedra': typeof AuthenticatedPedraRoute
   '/_authenticated/rh': typeof AuthenticatedRhRoute
   '/_authenticated/romaneios': typeof AuthenticatedRomaneiosRoute
+  '/api/chat': typeof ApiChatRoute
   '/api/generate-object': typeof ApiGenerateObjectRoute
   '/api/generate-texture': typeof ApiGenerateTextureRoute
   '/api/zapi-enviar-pdf': typeof ApiZapiEnviarPdfRoute
@@ -452,8 +470,10 @@ export interface FileRouteTypes {
     | '/marketing'
     | '/medicoes'
     | '/minha-conta'
+    | '/pedra'
     | '/rh'
     | '/romaneios'
+    | '/api/chat'
     | '/api/generate-object'
     | '/api/generate-texture'
     | '/api/zapi-enviar-pdf'
@@ -495,8 +515,10 @@ export interface FileRouteTypes {
     | '/marketing'
     | '/medicoes'
     | '/minha-conta'
+    | '/pedra'
     | '/rh'
     | '/romaneios'
+    | '/api/chat'
     | '/api/generate-object'
     | '/api/generate-texture'
     | '/api/zapi-enviar-pdf'
@@ -541,8 +563,10 @@ export interface FileRouteTypes {
     | '/_authenticated/marketing'
     | '/_authenticated/medicoes'
     | '/_authenticated/minha-conta'
+    | '/_authenticated/pedra'
     | '/_authenticated/rh'
     | '/_authenticated/romaneios'
+    | '/api/chat'
     | '/api/generate-object'
     | '/api/generate-texture'
     | '/api/zapi-enviar-pdf'
@@ -581,6 +605,7 @@ export interface RootRouteChildren {
   McpRoute: typeof McpRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  ApiChatRoute: typeof ApiChatRoute
   ApiGenerateObjectRoute: typeof ApiGenerateObjectRoute
   ApiGenerateTextureRoute: typeof ApiGenerateTextureRoute
   ApiZapiEnviarPdfRoute: typeof ApiZapiEnviarPdfRoute
@@ -691,6 +716,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMinhaContaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/pedra': {
+      id: '/_authenticated/pedra'
+      path: '/pedra'
+      fullPath: '/pedra'
+      preLoaderRoute: typeof AuthenticatedPedraRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/rh': {
       id: '/_authenticated/rh'
       path: '/rh'
@@ -704,6 +736,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/romaneios'
       preLoaderRoute: typeof AuthenticatedRomaneiosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/api/generate-object': {
       id: '/api/generate-object'
@@ -965,6 +1004,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedMarketingRoute: typeof AuthenticatedMarketingRoute
   AuthenticatedMedicoesRoute: typeof AuthenticatedMedicoesRoute
   AuthenticatedMinhaContaRoute: typeof AuthenticatedMinhaContaRoute
+  AuthenticatedPedraRoute: typeof AuthenticatedPedraRoute
   AuthenticatedRhRoute: typeof AuthenticatedRhRoute
   AuthenticatedRomaneiosRoute: typeof AuthenticatedRomaneiosRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
@@ -987,6 +1027,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedMarketingRoute: AuthenticatedMarketingRoute,
   AuthenticatedMedicoesRoute: AuthenticatedMedicoesRoute,
   AuthenticatedMinhaContaRoute: AuthenticatedMinhaContaRoute,
+  AuthenticatedPedraRoute: AuthenticatedPedraRoute,
   AuthenticatedRhRoute: AuthenticatedRhRoute,
   AuthenticatedRomaneiosRoute: AuthenticatedRomaneiosRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
@@ -1013,6 +1054,7 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  ApiChatRoute: ApiChatRoute,
   ApiGenerateObjectRoute: ApiGenerateObjectRoute,
   ApiGenerateTextureRoute: ApiGenerateTextureRoute,
   ApiZapiEnviarPdfRoute: ApiZapiEnviarPdfRoute,
